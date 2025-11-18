@@ -1,5 +1,4 @@
 #include "timer.h"
-#include "dtekv-lib.h"
 
 const int SEGMENT_CODES[10] = { // 0-9 segment codes
     0xC0, 0xF9, 0xA4, 0xB0, 0x99,

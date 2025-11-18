@@ -13,11 +13,10 @@ typedef struct { // Timer structure
     int seconds;
 } Timer;
 
-extern volatile Timer timer;
-
 void updateTimer(volatile Timer* t);
 void tick(volatile Timer* t, int increment);
 void startTimer();
 void stopTimer();
+void getTimer(volatile Timer* t);
 
 #endif

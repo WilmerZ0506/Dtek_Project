@@ -6,10 +6,7 @@
 typedef struct { // Player structure
     int life; 
     int damage; 
-
 } Player;
-
-extern volatile Player player;
 
 void updatelife(volatile Player* p);
 void change_life(volatile Player* p, int life);
