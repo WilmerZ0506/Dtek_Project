@@ -14,3 +14,13 @@ void change_life(volatile Player* p, int life) // Change player's life and updat
     if (p->life > 100) p->life = 100; // Cap life at 100
     updatelife(p);
 }
+
+void change_damage(volatile Player* p, int damage) // Change player's damage
+{
+    p->damage = damage;
+}
+
+void change_protection(volatile Player* p, int protection) // Change player's protection
+{
+    p->protection = protection;
+}

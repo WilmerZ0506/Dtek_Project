@@ -26,7 +26,7 @@ void handle_interrupt(unsigned cause) // Handle interrupts based on cause
     {
         if (debounce_counter == 0) // If not in debounce period
         {
-            debounce_counter = 2; // Set debounce counter (200ms)
+            debounce_counter = 5; // Set debounce counter (500ms)
             state.button_pressed = 1; // Set button pressed flag
         }
         BTN_EDGE = BTN_EDGE; // Clear button interrupt

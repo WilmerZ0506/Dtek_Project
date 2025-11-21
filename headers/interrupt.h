@@ -6,6 +6,7 @@
 #define BTN_EDGE (*(volatile int *)0x040000dc) // Button edge register
 
 #include "game.h"
+#include "dtekv-lib.h"
 
 void handle_interrupt(unsigned cause);
 

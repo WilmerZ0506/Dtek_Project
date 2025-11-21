@@ -1,6 +1,8 @@
 #ifndef TIMER_H
 #define TIMER_H
 
+#include "dtekv-lib.h"
+
 #define TIMER_STATUS (*(volatile int *)0x04000020) // Timer status register
 #define TIMER_CONTROL (*(volatile int *)0x04000024) // Timer control register
 #define TIMER_PERIODL (*(volatile int *)0x04000028) // Timer period low register
@@ -18,5 +20,6 @@ void tick(volatile Timer* t, int increment);
 void startTimer();
 void stopTimer();
 void getTimer(volatile Timer* t);
+int check_timer_done(volatile Timer* t);
 
 #endif

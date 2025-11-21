@@ -35,3 +35,13 @@ void stopTimer() // Stop the hardware timer
 {
     TIMER_CONTROL = 0x0; // Stop timer
 }
+
+int check_timer_done(volatile Timer *t) // Check if the counter has reached zero
+{
+    if (t->minutes == 0 && t->seconds == 0) {
+        print("Timer finished!\n");
+        stopTimer();    
+        return 1; // Timer done
+    }
+    return 0; // Timer not done
+}
