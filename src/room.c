@@ -1,9 +1,9 @@
 // src/room.c
 #include "room.h"
 
-Room room1, room2, room3, room4, room5, room6, room7, room8, room9;
+Room room1, room2, room3, room4, room5, room6, room7, room8, room9; // Declare rooms
 
-void create_rooms() {
+void create_rooms() { // Initialize rooms and their connections
     room1.id = 1;
     room1.name = "Entrance Hall";
     room1.description = " is grand and welcoming.";
@@ -59,7 +59,7 @@ void create_rooms() {
     room9.previous_room = &room8;
 }
 
-void print_room_info(const Room* room) {
+void print_room_info(const Room* room) { // Print room information
     print("You are in the ");
     print(room->name);
     print(". It");
@@ -67,7 +67,11 @@ void print_room_info(const Room* room) {
     print("\n\n");
 }
 
-void inspect_room(const Room* room) {
+//gör inspevt room här nedan värdefull kinini
+//t.ex. ändra spelarens damage eller protection beroende på rum
+//kom ihåg att rummen är egentligen placeholders för att visa att du kan navigera mellan rum, så du kan byta ut dem mot vad du vill och få speldelarna att passa
+
+void inspect_room(const Room* room) { // Inspect the current room
     switch (room->id) {
         case 1:
             print("The Entrance Hall is grand and welcoming.\n\n");

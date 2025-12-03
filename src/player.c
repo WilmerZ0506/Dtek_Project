@@ -1,4 +1,5 @@
 #include "player.h"
+#include "boss.h"
 
 void updatelife(volatile Player* p) // Update LED display based on player's life
 {
@@ -7,7 +8,12 @@ void updatelife(volatile Player* p) // Update LED display based on player's life
     LED_ADDR = mask;
 }
 
-void change_life(volatile Player* p, int life) // Change player's life and update LED
+void player_attack(volatile Player* p, volatile Boss* b) // Player attacks boss
+{
+    change_boss_life(b, -p->damage);
+}
+
+void change_player_life(volatile Player* p, int life) // Change player's life and update LED
 {
     p->life += life;
     if (p->life < 0) p->life = 0; // Prevent negative life

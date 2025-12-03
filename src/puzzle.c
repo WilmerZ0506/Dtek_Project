@@ -1,5 +1,9 @@
 #include "puzzle.h"
 
+// Lägg till funktioner för varje pussel här Kinini
+// case 9 ska endast gå att lösa om bossen är besegrad och då vinner spelaren spelet men det ska inte vara något särskilt pussel för det
+// kalla dina funktioner i solve_puzzle nedan efter case nummer
+
 void solve_puzzle(const Room* room) {
     switch (room->id) {
         case 1:
