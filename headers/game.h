@@ -17,20 +17,9 @@ typedef struct {
     volatile Boss boss;
     volatile int button_pressed;
     volatile int battle_mode;
-    volatile int boss_dead;
-    int puzzles_solved[9]; // en flagga per puzzle (1 = löst, 0 = ej löst)
-
-    // Cooldowns (i sekunder)
-    int attack_cd;
-    int defend_cd;
-    int heal_cd;
-
-    // Senaste tidpunkter (t.ex. timer.counter eller egen tidsräknare)
-    int last_attack_time;
-    int last_defend_time;
-    int last_heal_time;
-
-    int player_max_hp;
+    volatile int boss_dead; // Kenan Hourie
+    volatile int game_over; // Kenan Hourie
+    int puzzles_solved[9]; // en flagga per puzzle (1 = löst, 0 = ej löst) // Kenan Hourie
 } GameState;
 
 extern GameState state; // Declare global game state
@@ -40,6 +29,5 @@ int get_switches();
 void move_next(volatile Player* p);
 void move_previous(volatile Player* p);
 void print_meny(Room* room);
-void battle_mode(GameState *state);
 
 #endif

@@ -34,7 +34,7 @@ void handle_interrupt(unsigned cause) // Handle interrupts based on cause
             int dist_back    = (state.boss.current_room->id - state.player.current_room->id + 9) % 9;
 
             if (dist_forward == 1 || dist_back == 1) {
-                print("You hear heavy footsteps nearby...\n");
+                print("YOU HEAR HEAVY FOOTSTEPS NEARBY...\n\n");
             }
         }
     }

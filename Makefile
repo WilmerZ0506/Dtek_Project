@@ -1,11 +1,13 @@
 SRC_DIR ?= ./
 OBJ_DIR ?= ./
-SOURCES ?= $(shell find $(SRC_DIR) -name '*.c' -or -name '*.S')
+SOURCES = ./src/boot.S ./src/boss.c ./src/dtekv-lib.c ./src/game.c \
+          ./src/interrupt.c ./src/main.c ./src/player.c ./src/puzzle.c \
+          ./src/room.c ./src/timer.c
 OBJECTS ?= $(addsuffix .o, $(basename $(notdir $(SOURCES))))
 LINKER ?= $(SRC_DIR)/dtekv-script.lds
 
-TOOLCHAIN ?= riscv32-unknown-elf-
-CFLAGS ?= -Wall -nostdlib -O3 -mabi=ilp32 -march=rv32imzicsr -fno-builtin -I./headers
+TOOLCHAIN ?= riscv64-unknown-elf-
+CFLAGS ?= -Wall -nostdlib -O3 -mabi=ilp32 -march=rv32im -fno-builtin -I./headers
 
 
 build: clean main.bin
@@ -19,7 +21,7 @@ main.bin: main.elf
 	$(TOOLCHAIN)objdump -D $< > $<.txt
 
 clean:
-	rm -f *.o *.elf *.bin *.txt
+	del /Q *.o *.elf *.bin *.txt
 
 TOOL_DIR ?= ./tools
 run: main.bin
