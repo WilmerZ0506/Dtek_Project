@@ -9,7 +9,7 @@
 typedef struct Boss Boss; // Forward declaration
 
 typedef struct Player{ // Player structure
-    int life;
+    int life; 
     int damage;
     int protection;
     Room* current_room;
