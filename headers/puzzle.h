@@ -4,9 +4,9 @@
 #include "game.h"
 #include "room.h"
 
-void puzzle_life(GameState *state);
-void puzzle_damage(GameState *state);
-void puzzle_protection(GameState *state);
+void puzzle_life(GameState *state, int id);
+void puzzle_damage(GameState *state, int id);
+void puzzle_protection(GameState *state, int id);
 void puzzle1(GameState *state);
 void puzzle2(GameState *state);
 void puzzle3(GameState *state);

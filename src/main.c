@@ -5,8 +5,8 @@ extern void enable_interrupt(void); // function defined in boot.S
 int main() {
 
     state.timer = (Timer){5, 0}; // Initialize timer to 5 minutes
-    state.player = (Player){100, 10}; // Initialize player with 100 life and 10 damage
-    state.boss = (Boss){150, 15}; // Initialize boss with 150 life and 15 damage
+    state.player = (Player){100, 10, 0}; // Initialize player with 100 life and 10 damage
+    state.boss = (Boss){125, 25}; // Initialize boss with 150 life and 15 damage
     state.player.current_room = &room1; // Set initial room
     state.boss.current_room = &room7; // Set boss's initial room
     state.button_pressed = 0; // Initialize button pressed flag

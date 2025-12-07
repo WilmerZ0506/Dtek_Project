@@ -12,12 +12,13 @@ typedef struct Player{ // Player structure
     int life; 
     int damage;
     int protection;
+    int max_life;
     Room* current_room;
 } Player;
 
 void updatelife(volatile Player* p);
 void player_attack(volatile Player* p, volatile Boss* b);
-void change_player_life(volatile Player* p, int life);
+void change_player_life(volatile Player* p, int delta);
 void change_damage(volatile Player* p, int damage);
 void change_protection(volatile Player* p, int protection);
 
