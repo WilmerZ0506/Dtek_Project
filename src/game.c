@@ -25,8 +25,8 @@ void print_meny(Room* room) // Print menu options
     print_room_info(room);
     print("1. Next Room | ");
     print("2. Previous Room | ");
-    print("3. Inspect Room | ");
-    print("4. Solve Puzzle \n\n");
+    print("3. Solve Puzzle | ");
+    print("4. Inspect Room \n\n");
 }
 
 void battle_step(GameState *state)
@@ -144,10 +144,10 @@ int game_loop(GameState *state)
                 move_previous(&state->player);
                 break;
             case 0x04: // Third switch
-                inspect_room(state->player.current_room);
+                solve_puzzle(state, state->player.current_room);
                 break;
             case 0x08: // Fourth switch
-                solve_puzzle(state, state->player.current_room);
+                inspect_room(state->player.current_room);
                 break;
             default:
                 break;
