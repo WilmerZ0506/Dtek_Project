@@ -16,6 +16,7 @@ void handle_interrupt(unsigned cause) // Handle interrupts based on cause
         {
             tick_count = 0; // Reset tick count
             tick(&state.timer, -1); // Decrement timer by 1 second
+            state.timer.counter++;  // Increment elapsed time for cooldowns
             updateTimer(&state.timer); // Update display
         }
 

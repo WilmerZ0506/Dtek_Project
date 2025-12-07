@@ -17,6 +17,33 @@ void print(char *s)
   }
 }
 
+#include "dtekv-lib.h"
+
+void print_int(int value) {
+    char buffer[12];
+    int i = 0;
+
+    if (value == 0) {
+        buffer[i++] = '0';
+    } else {
+        if (value < 0) {
+            print("-");
+            value = -value;
+        }
+        char temp[12];
+        int j = 0;
+        while (value > 0) {
+            temp[j++] = '0' + (value % 10);
+            value /= 10;
+        }
+        while (j > 0) {
+            buffer[i++] = temp[--j];
+        }
+    }
+    buffer[i] = '\0';
+    print(buffer);
+}
+
 void print_dec(unsigned int x)
 {
   unsigned divident = 1000000000;

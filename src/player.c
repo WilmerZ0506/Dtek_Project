@@ -23,10 +23,10 @@ void change_player_life(volatile Player* p, int life) // Change player's life an
 
 void change_damage(volatile Player* p, int damage) // Change player's damage
 {
-    p->damage = damage;
+    p->damage += damage;
 }
 
 void change_protection(volatile Player* p, int protection) // Change player's protection
 {
-    p->protection = protection;
+    p->protection += protection;
 }

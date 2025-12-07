@@ -13,6 +13,7 @@
 typedef struct { // Timer structure
     int minutes;
     int seconds;
+    int counter;
 } Timer;
 
 void updateTimer(volatile Timer* t);
