@@ -8,7 +8,7 @@
 
 typedef struct Boss Boss; // Forward declaration
 
-typedef struct Player{ // Player structure
+typedef struct Player{ // Player structure // Wilmer Zetterström
     int life; 
     int damage;
     int protection;

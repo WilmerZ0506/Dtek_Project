@@ -4,7 +4,7 @@ static int tick_count = 0; // Counts timer ticks (100ms each)
 static int debounce_counter = 0; // Debounce counter for button press
 static int boss_timer = 0; // Timer for boss movement
 
-void handle_interrupt(unsigned cause) // Handle interrupts based on cause
+void handle_interrupt(unsigned cause) // Handle interrupts based on cause // Wilmer Zetterström
 {
     if (cause == 16) // Timer interrupt
     {
@@ -16,7 +16,6 @@ void handle_interrupt(unsigned cause) // Handle interrupts based on cause
         {
             tick_count = 0; // Reset tick count
             tick(&state.timer, -1); // Decrement timer by 1 second
-            state.timer.counter++;  // Increment elapsed time for cooldowns
             updateTimer(&state.timer); // Update display
         }
 

@@ -10,16 +10,16 @@
 #include "timer.h"
 #include "room.h"
 
-// Game state structure
-typedef struct {
-    volatile Timer timer;
-    volatile Player player;
-    volatile Boss boss;
-    volatile int button_pressed;
-    volatile int battle_mode;
-    volatile int boss_dead; // Kenan Hourie
-    volatile int game_over; // Kenan Hourie
-    int puzzles_solved[9]; // en flagga per puzzle (1 = löst, 0 = ej löst) // Kenan Hourie
+typedef struct { // Game state structure // Kenan Hourie & Wilmer Zetterström
+    volatile Timer timer; 
+    volatile Player player; 
+    volatile Boss boss; 
+    volatile int button_pressed; // Button pressed flag
+    volatile int battle_mode; // Battle mode flag
+    volatile int boss_dead; // Boss dead flag
+    volatile int game_over; // Game over flag
+    volatile int win; // Win flag
+    volatile int puzzles_solved[9]; // Flag for solved puzzles
 } GameState;
 
 extern GameState state; // Declare global game state

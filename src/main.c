@@ -2,7 +2,7 @@ extern void enable_interrupt(void); // function defined in boot.S
 
 #include "game.h"
 
-int main() {
+int main() { // Main function // Kenan Hourie & Wilmer Zetterström
 
     state.timer = (Timer){5, 0}; // Initialize timer to 5 minutes
     state.player = (Player){100, 10, 0}; // Initialize player with 100 life and 10 damage // Kenan
@@ -13,7 +13,7 @@ int main() {
     state.battle_mode = 0; // Initialize battle mode flag
     state.boss_dead = 0; // Initialize boss dead flag
 
-    create_rooms();
+    create_rooms(); // Initialize rooms
     enable_interrupt(); // Enable interrupts
     game_loop(&state); // Start the game loop
     return 0;

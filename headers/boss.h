@@ -6,7 +6,7 @@
 
 typedef struct Player Player; // Forward declaration
 
-typedef struct Boss{ // Boss structure
+typedef struct Boss{ // Boss structure // Wilmer Zetterström
     volatile int life;
     volatile int damage;
     volatile Room* current_room;

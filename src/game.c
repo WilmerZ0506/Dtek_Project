@@ -4,22 +4,22 @@
 
 GameState state; // Declare global game state
 
-int get_switches()
+int get_switches() // Get current switch states // Wilmer Zetterström
 {
     return SW_ADDR & 0x0F; // Return lower 4 bits of switch state
 }
 
-void move_next(volatile Player *p) // Move player to next room
+void move_next(volatile Player *p) // Move player to next room // Wilmer Zetterström
 {
     p->current_room = p->current_room->next_room;
 }
 
-void move_previous(volatile Player *p) // Move player to previous room
+void move_previous(volatile Player *p) // Move player to previous room // Wilmer Zetterström
 {
     p->current_room = p->current_room->previous_room;
 }
 
-void print_meny(Room* room) // Print menu options
+void print_meny(Room* room) // Print menu options // Kenan Hourie
 {
     print("----------------------------------------------------------------\n\n");
     print_room_info(room);
@@ -29,8 +29,7 @@ void print_meny(Room* room) // Print menu options
     print("4. Inspect Room \n\n");
 }
 
-// Kenan
-void battle_step(GameState *state)
+void battle_step(GameState *state) // One step in the battle sequence // Kenan Hourie
 {   
 
     print("----------------------------------------------------------------\n\n");
@@ -42,9 +41,9 @@ void battle_step(GameState *state)
 
     int action = get_switches();
 
-    // Spelarens tur
+    // Player's turn
     switch (action) {
-        case 0x01: {
+        case 0x01: { // attack
             int dmg = state->player.damage;
             state->boss.life -= dmg;
             print("You attack the Boss for "); print_int(dmg); print(" damage!\n");
@@ -52,7 +51,7 @@ void battle_step(GameState *state)
             break;
         }
 
-        case 0x02: {
+        case 0x02: { // buff defense
             state->player.protection += 1; // buff
             print("You brace yourself, incoming damage reduced permanently!\n");
             print("+1 DEF\n\n");
@@ -60,7 +59,7 @@ void battle_step(GameState *state)
             break;
         }
 
-        case 0x04: {
+        case 0x04: { // buff attack
             state->player.damage += 2; // buff
             print("You eat some leftover shawarma, damage output increased permanently!\n");
             print("+2 ATK\n\n");
@@ -74,33 +73,33 @@ void battle_step(GameState *state)
         }
     }
 
-    // Bossens tur direkt efter spelarens
+    // Boss's turn
     if (state->boss.life > 0 && state->player.life > 0) {
         print("---------------------------BOSS TURN--------------------------\n\n");
         boss_take_action(&state->boss, &state->player);
     }
 
-    // Kolla om bossen dog
+    // Check if the boss is dead
     if (state->boss.life <= 0) {
         print("You have defeated the Boss! Congratulations on your victory!\n\n");
         state->battle_mode = 0;
         state->boss_dead = 1;
     }
 
-    // Kolla om spelaren dog
+    // Check if the player is dead
     if (state->player.life <= 0) {
         print("You've been defeated...\n\n");
-        print("---------------------------GAME OVER---------------------------\n\n");
         state->battle_mode = 0;
-        stopTimer();
         state->game_over = 1;
         return;
     }
     
 }
 
-int game_loop(GameState *state)
+int game_loop(GameState *state) // Main game loop // Wilmer Zetterström & Kenan Hourie
 {
+    // Wilmer Zetterström
+
     BTN_INTERRUPTMASK = 1; // Enable button interrupt
     updatelife(&state->player); // Initialize LED with player's life
     print("Press to start the game!\n\n");
@@ -150,6 +149,9 @@ int game_loop(GameState *state)
             }
         }
 
+        // Kenan Hourie
+
+        // Check for boss encounter
         if (!state->game_over && state->battle_mode == 0 &&
         state->boss.current_room == state->player.current_room &&
         !state->boss_dead) {
@@ -157,13 +159,30 @@ int game_loop(GameState *state)
         state->battle_mode = 1;
         }
 
+        // Handle battle if in battle mode
         if (state->battle_mode && !state->game_over) {
             battle_step(state);
         }
-        
-        //Kenan Hourie
-        if (check_timer_done(&state->timer)) {   // ändra check_timer_done att ta GameState*
+
+        // Check if timer is done
+        if (check_timer_done(&state->timer)) {
             state->game_over = 1;
+            print("Time's up! You've run out of time...\n\n");
+            print("---------------------------GAME OVER---------------------------\n\n");
+            stopTimer();
+            break;
+        }
+
+        // Check for game over or win conditions
+        if (state->game_over) {
+            print("---------------------------GAME OVER---------------------------\n\n");
+            stopTimer();
+            break;
+        }
+
+        if (state->win) {
+            print("---------------------------YOU WIN---------------------------\n\n");
+            stopTimer();
             break;
         }
 

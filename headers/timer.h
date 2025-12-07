@@ -10,10 +10,9 @@
 
 #include "dtekv-lib.h"
 
-typedef struct { // Timer structure
+typedef struct { // Timer structure // Wilmer Zetterström
     int minutes;
     int seconds;
-    int counter; // Kenan Hourie
 } Timer;
 
 void updateTimer(volatile Timer* t);

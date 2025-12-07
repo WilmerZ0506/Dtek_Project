@@ -4,7 +4,7 @@
 
 #include "dtekv-lib.h"
 
-typedef struct Room { // Room structure
+typedef struct Room { // Room structure // Kenan Hourie
     int id;
     char* name;
     char* description;

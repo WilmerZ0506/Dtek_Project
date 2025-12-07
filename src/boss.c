@@ -4,16 +4,15 @@
 
 static unsigned int seed = 123456789;
 
-    int my_rand() {
+    int my_rand() { // Simple linear congruential generator // Kenan Hourie
         seed = seed * 1103515245 + 12345;
-        return (seed >> 16) & 0x7FFF; // returnerar ett positivt tal
+        return (seed >> 16) & 0x7FFF; // return a pseudo-random number
     }
 
-void boss_take_action(volatile Boss* b,volatile Player* p) {
+void boss_take_action(volatile Boss* b,volatile Player* p) { // Boss takes action against player // Kenan Hourie
 
     int r = my_rand();
-    //Slumpa fram en action, 0 för attack, 1 för defend , och 2 för heal
-    int choice = r % 2;
+    int choice = r % 2; // 0 = Attack, 1 = Heal
 
     switch (choice){
         case 0: { //Attack
@@ -33,13 +32,13 @@ void boss_take_action(volatile Boss* b,volatile Player* p) {
     }
 }
 
-void change_boss_life(volatile Boss* b, int life) // Change boss's life
+void change_boss_life(volatile Boss* b, int life) // Change boss's life // Wilmer Zetterström
 {
     b->life += life;
     if (b->life < 0) b->life = 0; // Prevent negative life
 }
 
-void change_current_room(volatile Boss* b, volatile Player* p) // Change boss's current room
+void change_current_room(volatile Boss* b, volatile Player* p) // Change boss's current room // Wilmer Zetterström
 {
     int distance_back = (b->current_room->id - p->current_room->id + 9) % 9; // Assuming 9 rooms in a circular manner
     int distance_forward = (p->current_room->id - b->current_room->id + 9) % 9; // Assuming 9 rooms in a circular manner
