@@ -87,7 +87,7 @@ void puzzle5(GameState *state){ // Puzzle in room 6 // Kenan Hourie
     while (!state->button_pressed) {}
     state->button_pressed = 0;
     int val = get_switches();
-    if(val == 0x02) {
+    if(val == 0x04) {
         print("You drink the potion labeled with (Power)...\n\n");
         puzzle_damage(state, 5);
     }
